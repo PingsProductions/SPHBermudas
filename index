@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Head Football Bermudas</title>
+
+    <!-- Carregando o Ruffle hospedado localmente -->
+    <script src="ruffle/ruffle.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: #FFD700;
+        }
+
+        h3 {
+            font-size: 1.2em;
+            margin-top: 10px;
+            color: #FFF;
+        }
+
+        h4 {
+            font-size: 0.7em;
+            margin-top: 10px;
+            color: #FFF;
+        }
+
+        #game-container {
+            display: none;
+            margin: 20px auto;
+            width: 800px;
+            height: 600px;
+            background: #000;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        #start-button {
+            background: #FFD700;
+            color: #333;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        #start-button:hover {
+            background: #FFA500;
+            transform: scale(1.05);
+        }
+
+        .comments-section {
+            margin-top: 50px;
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        textarea {
+            width: 100%;
+            height: 80px;
+            margin-top: 10px;
+            border-radius: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        button.comment-btn {
+            background: #008CBA;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .comment {
+            background: #eee;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sports Head Football Bermudas</h1>
+    <h2>⚽ Mostre que você é dono dessa bola toda 🏆</h2>
+    <h3>DISCLAIMER: Este conteúdo é uma homenagem/paródia e não visa lucro nem violação de direitos autorais
+</h3>
+<h4>amizade é tudo
+</h4>
+    <button id="start-button">Eu sou craque</button>
+
+    <div id="game-container">
+        <embed id="game" src="SPHB.swf" width="800" height="600">
+    </div>
+
+    <div class="comments-section">
+        <h2>Comentários</h2>
+        <textarea id="comment-input" placeholder="Seção Resenha:"></textarea>
+        <button class="comment-btn" onclick="addComment()">Enviar</button>
+        <div id="comments"></div>
+    </div>
+
+    <script>
+        // Inicia o jogo apenas quando o botão for pressionado
+        document.getElementById('start-button').addEventListener('click', function () {
+            document.getElementById('game-container').style.display = 'block';
+            this.style.display = 'none';
+        });
+
+        // Função para adicionar comentários e salvar no localStorage
+        function addComment() {
+            let commentText = document.getElementById('comment-input').value;
+            if (commentText.trim() === '') return;
+
+            let commentDiv = document.createElement('div');
+            commentDiv.classList.add('comment');
+            commentDiv.textContent = commentText;
+
+            document.getElementById('comments').appendChild(commentDiv);
+            document.getElementById('comment-input').value = '';
+
+            // Salvar comentário no localStorage
+            let comments = JSON.parse(localStorage.getItem('comments')) || [];
+            comments.push(commentText);
+            localStorage.setItem('comments', JSON.stringify(comments));
+        }
+
+        // Recuperar comentários ao carregar a página
+        window.onload = function () {
+            let comments = JSON.parse(localStorage.getItem('comments')) || [];
+            comments.forEach(text => {
+                let commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment');
+                commentDiv.textContent = text;
+                document.getElementById('comments').appendChild(commentDiv);
+            });
+        };
+    </script>
+</body>
+</html>
