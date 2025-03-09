@@ -65,16 +65,16 @@
 
     <button class="btn-start" onclick="startGame()">Vou dar show de bolice</button>
 
-    <div id="game-container" class="game-wrapper">
-        <embed id="game" src="SPHB.swf" width="900" height="700">
-    </div>
+  <div id="game-container" class="game-wrapper" style="display: none;">
+    <embed id="game" src="SPHB.swf" width="900" height="700">
+</div>
 
     <script>
         function startGame() {
             const gameContainer = document.getElementById("game-container");
             const game = document.getElementById("game");
             
-            game.setAttribute("data", "sphb.swf"); // Carrega o jogo apenas após o clique
+            game.setAttribute("src", "SPHB.swf"); // Carrega o jogo apenas após o clique
             gameContainer.style.display = "flex";
         }
     </script>
