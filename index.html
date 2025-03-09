@@ -66,7 +66,7 @@
     <button class="btn-start" onclick="startGame()">Vou dar show de bolice</button>
 
     <div id="game-container" class="game-wrapper">
-        <object id="game" data="" type="application/x-shockwave-flash" width="800" height="600">
+        <object id="game" data="" type="application/x-shockwave-flash" width="900" height="700">
             <param name="movie" value="SPHB.swf">
             <param name="allowScriptAccess" value="always">
             <param name="allowFullScreen" value="true">
@@ -78,7 +78,7 @@
             const gameContainer = document.getElementById("game-container");
             const game = document.getElementById("game");
             
-            game.setAttribute("data", "SPHB.swf"); // Carrega o jogo apenas após o clique
+            game.setAttribute("data", "sphb.swf"); // Carrega o jogo apenas após o clique
             gameContainer.style.display = "flex";
         }
     </script>
