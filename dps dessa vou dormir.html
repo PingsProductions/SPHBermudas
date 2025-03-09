@@ -89,10 +89,10 @@
     <h3>DISCLAIMER: Este conteúdo é uma homenagem/paródia e não visa lucro nem violação de direitos autorais</h3>
     <h4>amizade é tudo</h4>
 
-    <button class="btn-start" onclick="startGame()">Vou dar show de bolice</button>
+       <button id="start-button">Jogar Agora</button>
 
-    <div id="game-container" class="game-wrapper">
-        <object id="game" src="sphb.swf" width="800" height="600">
+    <div id="game-container">
+        <embed id="game" src="jogo.swf" width="800" height="600">
     </div>
 
     <div class="comments-section">
@@ -102,14 +102,12 @@
         <div id="comments"></div>
     </div>
 
-    <script>
-        function startGame() {
-            const gameContainer = document.getElementById("game-container");
-            const game = document.getElementById("game");
-
-            game.setAttribute("src", "sphb.swf"); // Carrega o jogo após o clique
-            gameContainer.style.display = "block"; // Corrigido para evitar flex desnecessário
-        }
+  <script>
+        // Inicia o jogo apenas quando o botão for pressionado
+        document.getElementById('start-button').addEventListener('click', function () {
+            document.getElementById('game-container').style.display = 'block';
+            this.style.display = 'none';
+        });
     </script>
 
     <script type="module">
