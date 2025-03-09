@@ -1,18 +1,67 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Jogo SWF</title>
+    <title>Sports Head Football Bermudas</title>
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script> <!-- Ruffle para rodar SWF -->
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        body {
+            background-color: #006400; /* Verde escuro (gramado) */
+            color: #FFD700; /* Amarelo ouro (cor da bola e da seleção) */
+            font-family: 'Press Start 2P', cursive; /* Fonte pixelada estilo arcade */
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-top: 20px;
+            text-shadow: 3px 3px 0px #000; /* Efeito de sombra */
+        }
+
+        #game-container {
+            display: none; /* O jogo começa oculto */
+            margin-top: 20px;
+        }
+
+        .btn-start {
+            background-color: #FFD700; /* Amarelo ouro */
+            color: #006400; /* Verde escuro */
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 10px;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .btn-start:hover {
+            background-color: #FF4500; /* Vermelho alaranjado (para destaque no hover) */
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    <h1>SportsHeadBermudas</h1>
+    <h1>⚽ Você é Craque? 🏆</h1>
+    <p>Mostre que vc é essa bola toda!!!</p>
+     <p>DISCLAIMER: Este conteúdo é uma homenagem/paródia e não visa lucro nem violação de direitos autorais.</p>
 
-    <!-- Ruffle para rodar o SWF -->
-    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <button class="btn-start" onclick="startGame()">Vou dar showdebolisse</button>
 
-    <!-- Exibe o jogo -->
-    <object width="1000" height="800" data="jogo.swf"></object>
+    <div id="game-container">
+        <object id="game" width="800" height="600" data="https://drive.google.com/uc?export=download&id=1ViMvOfDKPkGK26k7gfMYGOMZ58ZIhZoi"></object>
+    </div>
 
+    <script>
+        function startGame() {
+            document.getElementById("game-container").style.display = "block";
+        }
+    </script>
 </body>
 </html>
