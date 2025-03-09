@@ -97,14 +97,15 @@
 </div>
 
     <script>
-        function startGame() {
-            const gameContainer = document.getElementById("game-container");
-            const game = document.getElementById("game");
-            
-            game.setAttribute("src", "SPHB.swf"); // Carrega o jogo apenas após o clique
-            gameContainer.style.display = "flex";
-        }
-<script> 
+    function startGame() {
+        const gameContainer = document.getElementById("game-container");
+        const game = document.getElementById("game");
+        
+        game.setAttribute("src", "SPHB.swf"); // Carrega o jogo apenas após o clique
+        gameContainer.style.display = "block"; // Melhora para evitar problemas de layout
+    }
+</script> 
+
     
     <div class="comments-section">
         <h2>Comentários de Bermudas</h2>
