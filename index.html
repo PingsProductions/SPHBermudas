@@ -90,13 +90,11 @@
     <h4>amizade é tudo</h4>
     <button id="start-button">Eu sou craque</button>
 
-    <div id="game-container">
-        <!-- Carregando o jogo SWF com Ruffle -->
-        <script id="game" data="SPHB.swf" type="application/x-shhockwave-flash" width="800" height="600">
-            <param name="movie" value="SPHB.swf">
-            <param name="quality" value="high">
-        </script>
-    </div>
+   <div id="game-container">
+    <ruffle-player width="800" height="600">
+        <param name="movie" value="SPHB.swf">
+    </ruffle-player>
+</div>
 
     <div class="comments-section">
         <h2>Comentários de Bermudas</h2>
