@@ -6,27 +6,25 @@
     <title>Sports Head Football Bermudas</title>
 
     <!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
 
-<script>
-    // 🔥 Configuração do Firebase (substitua pelos seus dados!)
-    const firebaseConfig = {
-        apiKey: "AIzaSyCODynXo_8A7ZL09dYIQ0XRwaYtlLlofV4",
-  authDomain: "sphb-3677f.firebaseapp.com",
-  databaseURL: "https://sphb-3677f-default-rtdb.firebaseio.com",
-  projectId: "sphb-3677f",
-  storageBucket: "sphb-3677f.firebasestorage.app",
-  messagingSenderId: "1050840972948",
-  appId: "1:1050840972948:web:825294b88fab655a39fe81"
-};
+    <script>
+        // 🔥 Configuração do Firebase (substitua pelos seus dados!)
+        const firebaseConfig = {
+            apiKey: "AIzaSyCODynXo_8A7ZL09dYIQ0XRwaYtlLlofV4",
+            authDomain: "sphb-3677f.firebaseapp.com",
+            databaseURL: "https://sphb-3677f-default-rtdb.firebaseio.com",
+            projectId: "sphb-3677f",
+            storageBucket: "sphb-3677f.firebasestorage.app",
+            messagingSenderId: "1050840972948",
+            appId: "1:1050840972948:web:825294b88fab655a39fe81"
+        };
 
-    // Inicializando Firebase
-    const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-
-    <!-- Carregando o Ruffle hospedado localmente -->
-    <script src="ruffle/ruffle.js"></script>
+        // Inicializando Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+    </script>
 
     <style>
         body {
@@ -128,49 +126,54 @@
 <body>
     <h1>Sports Head Football Bermudas</h1>
     <h2>⚽ Mostre que você é dono dessa bola toda 🏆</h2>
-    <h3>DISCLAIMER: Este conteúdo é uma homenagem/paródia e não visa lucro nem violação de direitos autorais
-</h3>
-<h4>amizade é tudo
-</h4>
+    <h3>DISCLAIMER: Este conteúdo é uma homenagem/paródia e não visa lucro nem violação de direitos autorais</h3>
+    <h4>amizade é tudo</h4>
     <button id="start-button">Eu sou craque</button>
 
     <div id="game-container">
-        <embed id="game" src="SPHB.swf" width="800" height="600">
+        <!-- Carregando o jogo SWF com Ruffle -->
+        <object id="game" data="SPHB.swf" type="application/x-shockwave-flash" width="800" height="600">
+            <param name="movie" value="SPHB.swf">
+            <param name="quality" value="high">
+        </object>
     </div>
 
     <div class="comments-section">
-    <h2>Comentários</h2>
-    <textarea id="comment-input" placeholder="Seção Resenha:"></textarea>
-    <button class="comment-btn" onclick="addComment()">Enviar</button>
-    <div id="comments"></div>
-</div>
+        <h2>Comentários</h2>
+        <textarea id="comment-input" placeholder="Seção Resenha:"></textarea>
+        <button class="comment-btn" onclick="addComment()">Enviar</button>
+        <div id="comments"></div>
+    </div>
 
-<script>
-    // Função para adicionar comentários e salvar na nuvem
-    function addComment() {
-        let commentText = document.getElementById('comment-input').value.trim();
-        if (commentText === '') return;
+    <script src="ruffle/ruffle.js"></script> <!-- Carregando o Ruffle hospedado localmente -->
 
-        let commentData = {
-            text: commentText,
-            timestamp: new Date().toISOString()
-        };
+    <script>
+        // Função para adicionar comentários e salvar na nuvem
+        function addComment() {
+            let commentText = document.getElementById('comment-input').value.trim();
+            if (commentText === '') return;
 
-        // Salva no Firebase Database
-        db.ref('comments').push(commentData);
+            let commentData = {
+                text: commentText,
+                timestamp: new Date().toISOString()
+            };
 
-        // Limpa o campo de input após o envio
-        document.getElementById('comment-input').value = '';
-    }
+            // Salva no Firebase Database
+            db.ref('comments').push(commentData);
 
-    // Carregar comentários do Firebase em tempo real
-    db.ref('comments').on('child_added', (snapshot) => {
-        let comment = snapshot.val();
-        let commentDiv = document.createElement('div');
-        commentDiv.classList.add('comment');
-        commentDiv.textContent = comment.text;
-        document.getElementById('comments').appendChild(commentDiv);
-    });
-</script>
+            // Limpa o campo de input após o envio
+            document.getElementById('comment-input').value = '';
+        }
+
+        // Carregar comentários do Firebase em tempo real
+        db.ref('comments').on('child_added', (snapshot) => {
+            let comment = snapshot.val();
+            let commentDiv = document.createElement('div');
+            commentDiv.classList.add('comment');
+            commentDiv.textContent = comment.text;
+            document.getElementById('comments').appendChild(commentDiv);
+        });
+    </script>
 </body>
 </html>
+
