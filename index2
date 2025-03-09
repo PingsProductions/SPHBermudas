@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Head Football Bermudas</title>
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script> <!-- Ruffle para rodar SWF -->
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        body {
+            background-color: #006400; /* Verde escuro (gramado) */
+            color: #FFD700; /* Amarelo ouro */
+            font-family: 'Press Start 2P', cursive;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            text-shadow: 3px 3px 0px #000;
+        }
+
+        #game-container {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .btn-start {
+            background-color: #FFD700;
+            color: #006400;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 10px;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .btn-start:hover {
+            background-color: #FF4500;
+            color: white;
+        }
+
+        .game-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>⚽ Você é Craque? 🏆</h1>
+    <p>Mostre que vc é essa bola toda!!!</p>
+    <p>DISCLAIMER: Este conteúdo é uma homenagem/paródia e não visa lucro nem violação de direitos autorais.</p>
+
+    <button class="btn-start" onclick="startGame()">Vou dar show de bolice</button>
+
+    <div id="game-container" class="game-wrapper">
+        <embed id="game" src="" width="800" height="600">
+    </div>
+
+    <script>
+        function startGame() {
+            const gameContainer = document.getElementById("game-container");
+            const game = document.getElementById("game");
+            
+            game.src = "SPHB.swf"; // Carrega o jogo apenas após o clique
+            gameContainer.style.display = "flex";
+        }
+    </script>
+</body>
+</html>
