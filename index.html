@@ -11,26 +11,30 @@
 
         body {
             background-color: #006400; /* Verde escuro (gramado) */
-            color: #FFD700; /* Amarelo ouro (cor da bola e da seleção) */
-            font-family: 'Press Start 2P', cursive; /* Fonte pixelada estilo arcade */
+            color: #FFD700; /* Amarelo ouro */
+            font-family: 'Press Start 2P', cursive;
             text-align: center;
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
 
         h1 {
-            margin-top: 20px;
-            text-shadow: 3px 3px 0px #000; /* Efeito de sombra */
+            text-shadow: 3px 3px 0px #000;
         }
 
         #game-container {
-            display: none; /* O jogo começa oculto */
+            display: none;
             margin-top: 20px;
         }
 
         .btn-start {
-            background-color: #FFD700; /* Amarelo ouro */
-            color: #006400; /* Verde escuro */
+            background-color: #FFD700;
+            color: #006400;
             border: none;
             padding: 15px 30px;
             font-size: 18px;
@@ -42,25 +46,40 @@
         }
 
         .btn-start:hover {
-            background-color: #FF4500; /* Vermelho alaranjado (para destaque no hover) */
+            background-color: #FF4500;
             color: white;
+        }
+
+        .game-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
         }
     </style>
 </head>
 <body>
     <h1>⚽ Você é Craque? 🏆</h1>
     <p>Mostre que vc é essa bola toda!!!</p>
-     <p>DISCLAIMER: Este conteúdo é uma homenagem/paródia e não visa lucro nem violação de direitos autorais.</p>
+    <p>DISCLAIMER: Este conteúdo é uma homenagem/paródia e não visa lucro nem violação de direitos autorais.</p>
 
-    <button class="btn-start" onclick="startGame()">Vou dar showdebolisse</button>
+    <button class="btn-start" onclick="startGame()">Vou dar show de bolice</button>
 
-    <div style="width: 800px; height: 600px;">
-        <embed src="SPHB.swf" width="1000" height="800">
+    <div id="game-container" class="game-wrapper">
+        <object id="game" data="" type="application/x-shockwave-flash" width="800" height="600">
+            <param name="movie" value="SPHB.swf">
+            <param name="allowScriptAccess" value="always">
+            <param name="allowFullScreen" value="true">
+        </object>
     </div>
 
     <script>
         function startGame() {
-            document.getElementById("game-container").style.display = "block";
+            const gameContainer = document.getElementById("game-container");
+            const game = document.getElementById("game");
+            
+            game.setAttribute("data", "SPHB.swf"); // Carrega o jogo apenas após o clique
+            gameContainer.style.display = "flex";
         }
     </script>
 </body>
