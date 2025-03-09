@@ -5,6 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sports Head Football Bermudas</title>
 
+    <!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+
+<script>
+    // 🔥 Configuração do Firebase (substitua pelos seus dados!)
+    const firebaseConfig = {
+        apiKey: "AIzaSyCODynXo_8A7ZL09dYIQ0XRwaYtlLlofV4",
+  authDomain: "sphb-3677f.firebaseapp.com",
+  databaseURL: "https://sphb-3677f-default-rtdb.firebaseio.com",
+  projectId: "sphb-3677f",
+  storageBucket: "sphb-3677f.firebasestorage.app",
+  messagingSenderId: "1050840972948",
+  appId: "1:1050840972948:web:825294b88fab655a39fe81"
+};
+
+    // Inicializando Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
     <!-- Carregando o Ruffle hospedado localmente -->
     <script src="ruffle/ruffle.js"></script>
 
@@ -119,47 +139,38 @@
     </div>
 
     <div class="comments-section">
-        <h2>Comentários</h2>
-        <textarea id="comment-input" placeholder="Seção Resenha:"></textarea>
-        <button class="comment-btn" onclick="addComment()">Enviar</button>
-        <div id="comments"></div>
-    </div>
+    <h2>Comentários</h2>
+    <textarea id="comment-input" placeholder="Seção Resenha:"></textarea>
+    <button class="comment-btn" onclick="addComment()">Enviar</button>
+    <div id="comments"></div>
+</div>
 
-    <script>
-        // Inicia o jogo apenas quando o botão for pressionado
-        document.getElementById('start-button').addEventListener('click', function () {
-            document.getElementById('game-container').style.display = 'block';
-            this.style.display = 'none';
-        });
+<script>
+    // Função para adicionar comentários e salvar na nuvem
+    function addComment() {
+        let commentText = document.getElementById('comment-input').value.trim();
+        if (commentText === '') return;
 
-        // Função para adicionar comentários e salvar no localStorage
-        function addComment() {
-            let commentText = document.getElementById('comment-input').value;
-            if (commentText.trim() === '') return;
-
-            let commentDiv = document.createElement('div');
-            commentDiv.classList.add('comment');
-            commentDiv.textContent = commentText;
-
-            document.getElementById('comments').appendChild(commentDiv);
-            document.getElementById('comment-input').value = '';
-
-            // Salvar comentário no localStorage
-            let comments = JSON.parse(localStorage.getItem('comments')) || [];
-            comments.push(commentText);
-            localStorage.setItem('comments', JSON.stringify(comments));
-        }
-
-        // Recuperar comentários ao carregar a página
-        window.onload = function () {
-            let comments = JSON.parse(localStorage.getItem('comments')) || [];
-            comments.forEach(text => {
-                let commentDiv = document.createElement('div');
-                commentDiv.classList.add('comment');
-                commentDiv.textContent = text;
-                document.getElementById('comments').appendChild(commentDiv);
-            });
+        let commentData = {
+            text: commentText,
+            timestamp: new Date().toISOString()
         };
-    </script>
+
+        // Salva no Firebase Database
+        db.ref('comments').push(commentData);
+
+        // Limpa o campo de input após o envio
+        document.getElementById('comment-input').value = '';
+    }
+
+    // Carregar comentários do Firebase em tempo real
+    db.ref('comments').on('child_added', (snapshot) => {
+        let comment = snapshot.val();
+        let commentDiv = document.createElement('div');
+        commentDiv.classList.add('comment');
+        commentDiv.textContent = comment.text;
+        document.getElementById('comments').appendChild(commentDiv);
+    });
+</script>
 </body>
 </html>
