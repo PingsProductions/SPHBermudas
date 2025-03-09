@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sports Head Football Bermudas</title>
-    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script> <!-- Ruffle para rodar SWF -->
+    <script src="ruffle/ruffle.js"></script> <!-- Ruffle para rodar SWF -->
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
@@ -66,11 +66,11 @@
     <button class="btn-start" onclick="startGame()">Vou dar show de bolice</button>
 
     <div id="game-container" class="game-wrapper">
-        <object id="game" data="" type="application/x-shockwave-flash" width="900" height="700">
+        <embed id="game" src="SPHB.swf" width="800" height="600">
             <param name="movie" value="SPHB.swf">
             <param name="allowScriptAccess" value="always">
             <param name="allowFullScreen" value="true">
-        </object>
+
     </div>
 
     <script>
